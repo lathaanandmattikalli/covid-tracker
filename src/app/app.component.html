@@ -1,0 +1,70 @@
+<section id="statistic">
+  <div class="container text-center">
+    <div class="row">
+      <div class="col text-left">
+        <h2>COVID-19 Tracker</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-center mb-3">
+        <form>
+          <div class="form-group">
+            <select (change)="fetchDataByState($event.target.value)" class="form-control" id="country">
+              <option selected value="KA">KA</option>
+              <option *ngFor="let state of states" value="{{state}}">{{state}}</option>
+            </select>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 md-3">
+        <div class="card card-infected">
+          <div class="card-body">
+            <h3 class="card-title">INFECTED</h3>
+            <p class="card-text" [countUp]="data.confiremd">{{data.confiremd | number}}</p>
+            <p>{{data.lastupdate | date:'longDate'}}</p>
+            <p>Number of active cases of COVID-19</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 md-3">
+        <div class="card card-recovered">
+          <div class="card-body">
+            <h3 class="card-title">RECOVERED</h3>
+            <p class="card-text" [countUp]="data.recovered">{{data.recovered | number}}</p>
+            <p>{{data.lastupdate | date:'longDate'}}</p>
+            <p>Number of recovered cases of COVID-19</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 md-3">
+        <div class="card card-deaths">
+          <div class="card-body">
+            <h3 class="card-title">DEATHS</h3>
+            <p class="card-text" [countUp]="data.deaths">{{data.deaths | number}}</p>
+            <p>{{data.lastupdate | date:'longDate'}}</p>
+            <p>Number of deaths cases of COVID-19</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="graph">
+  <div class="container">
+    <div class="row">
+      <div class="col chart-wrapper">
+        <canvas  baseChart
+          [chartType]="barChartType"
+          [datasets]="barChartData"
+          [labels]="barChartLabels"
+        >
+        </canvas>
+      </div>
+    </div>
+  </div>
+</section>
+
+
